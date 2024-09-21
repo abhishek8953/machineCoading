@@ -14,10 +14,20 @@ app.use(express.json({ limit: "50mb" }));
 const port = process.env.PORT;
 
 app.get("/getEmployee", async (req, res) => {
+	const { page = 1, limit = 10 } = req.query;
 	try {
-		const user = await Employee.find();
-		console.log(user);
-		res.json(user);
+		const totalItems = await Employee.countDocuments();
+		const user = await Employee.find()
+			.limit(limit * 1) // Convert string to number and set the limit
+			.skip((page - 1) * limit) // Skip items for previous pages
+			.exec();
+
+		res.json({
+			totalItems,
+			totalPages: Math.ceil(totalItems / limit),
+			currentPage: page,
+			user,
+		});
 	} catch (error) {
 		res.json({ message: "not found", error: error });
 	}

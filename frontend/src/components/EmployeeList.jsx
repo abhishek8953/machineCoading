@@ -12,18 +12,31 @@ export const EmployeeList = ({
 	const [search, setSearch] = useState("");
 	const [handleSearch, sethandleSearch] = useState("");
 	const [sordName, setSortName] = useState("asc");
+	const [items, setItems] = useState([]);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(1);
+	const [itemsPerPage] = useState(10);
 
 	useEffect(() => {
-		function getUser() {
-			const res = axios.get(`${import.meta.env.VITE_SERVER}/getEmployee`);
-			res.then((data) => {
-				console.log(data.data);
-				setUser(data.data);
-			});
+		async function getUser() {
+			const res = await axios.get(
+				`${import.meta.env.VITE_SERVER}/getEmployee`,
+				{
+					params: {
+						page: currentPage,
+						limit: itemsPerPage,
+					},
+				}
+			);
+
+			setItems(res.data.totalItems);
+			setTotalPages(res.data.totalPages);
+			console.log(res.data);
+			setUser(res.data.user);
 		}
 
 		getUser();
-	}, [presentUser]);
+	}, [presentUser, currentPage, itemsPerPage]);
 
 	function handleSeacchChange(e) {
 		e.preventDefault();
@@ -128,10 +141,14 @@ export const EmployeeList = ({
 		return sortedUser;
 	}
 
+	const handlePageChange = (page) => {
+		setCurrentPage(page);
+	};
+
 	return (
 		<div className="relative">
 			<div className="w-full h-7 bg-red-500">
-				<span className="ml-10">Total Count:{user.length}</span>
+				<span className="ml-10">Total Count:{items}</span>
 				<span className="ml-10">
 					Base On Name:
 					<input
@@ -238,6 +255,30 @@ export const EmployeeList = ({
 						</tr>
 					))}
 			</table>
+			<div className="fixed top-[36rem] left-[38rem] ">
+				<span className="mr-6">
+					{" "}
+					<button
+						onClick={() => handlePageChange(currentPage - 1)}
+						disabled={currentPage === 1}
+						className="border rounded-md p-2 bg-green-600"
+					>
+						pre
+					</button>{" "}
+				</span>
+				<span className="pr-5">{currentPage}</span>
+				<span>
+					{" "}
+					<button
+						onClick={() => handlePageChange(currentPage + 1)}
+						disabled={currentPage === totalPages}
+						className="border rounded-md p-2 bg-green-600"
+					>
+						next
+					</button>
+				</span>
+				<span className="pl-5">{totalPages}</span>
+			</div>
 			{/* searching */}
 			<div className="absolute top-7 left-80 ">
 				{search && (
