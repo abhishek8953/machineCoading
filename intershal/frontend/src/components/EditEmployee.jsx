@@ -124,7 +124,7 @@ export const EditEmployee = ({
 	return (
 		<div className="max-w-sm mx-auto mt-5 p-4 bg-gray-100 rounded shadow-lg">
 			<h2 className="text-2xl font-bold text-center">
-				Create Employee{" "}
+				Edit Employee{" "}
 				<span className="ml-11 ">
 					<button
 						onClick={() => setSetEmployeeShow((pre) => !pre)}
