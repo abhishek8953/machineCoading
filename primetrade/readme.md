@@ -33,7 +33,7 @@ It has both **User** and **Admin** roles, proper validation on both sides, error
 ### 1. Clone this project
 ```bash
 git clone https://github.com/abhishek8953/machineCoading.git
-cd primetrade-blog
+cd primetrade
 
 ---
 
