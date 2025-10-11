@@ -10,10 +10,21 @@ const router = express.Router();
 // Get all blogs
 router.get("/", async (req, res, next) => {
   try {
-    const blogs = await Blog.find().populate("author", "name");
+    console.log("d");
+    const query = req.query.search || "";
+
+    // Case-insensitive title search
+    const blogs = await Blog.find(
+      query ? { title: { $regex: query, $options: "i" } } : {}
+    ).populate("author", "name email")
+      .sort({ createdAt: -1 });
+
     res.json(blogs);
-  } catch(err) { next(err); }
+  } catch (err) {
+    next(err);
+  }
 });
+
 
 // Get single blog + comments
 router.get("/:id", async (req, res, next) => {
@@ -76,5 +87,8 @@ router.post("/:id/comments", auth, async (req, res, next) => {
     res.json(populatedComment);
   } catch(err) { next(err); }
 });
+
+
+
 
 export default router;
