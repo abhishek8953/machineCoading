@@ -1,4 +1,4 @@
-# PrimeTrade Blog App 📰
+# PrimeTrade Blog App 
 
 This is a full-stack **Blog Application** made using the **MERN stack (MongoDB, Express, React, and Node.js)**.  
 It has both **User** and **Admin** roles, proper validation on both sides, error handling, and a clean responsive UI made with **Tailwind CSS**.
