@@ -1,42 +1,50 @@
-# Blog App (Frontend + Backend)
+# PrimeTrade Blog App 📰
 
-A responsive Blog App with **user/admin roles**, built with **React + TailwindCSS** on the frontend and **Node.js + Express + MongoDB** on the backend.  
-Users can view and comment on blogs, while admins can **create, update, and delete blogs**.
-
----
-
-## **Features**
-
-### User
-- Signup/Login
-- View all blogs
-- Comment on blogs
-- Responsive UI
-
-### Admin
-- All user features
-- Create new blogs
-- Edit existing blogs
-- Delete blogs
-- Role-based access control
-
-### Common Features
-- JWT-based authentication
-- Password hashing (bcrypt)
-- Client-side + server-side validation
-- Error handling
-- Modular & scalable code structure
+This is a full-stack **Blog Application** made using the **MERN stack (MongoDB, Express, React, and Node.js)**.  
+It has both **User** and **Admin** roles, proper validation on both sides, error handling, and a clean responsive UI made with **Tailwind CSS**.
 
 ---
 
-## **Tech Stack**
+## Features
 
-- Frontend: React, TailwindCSS, Axios, React Router
-- Backend: Node.js, Express, MongoDB, Mongoose
-- Authentication: JWT
-- Validation: Express-validator / Custom backend validation
+- User and Admin signup/login  
+- Create, edit, and delete blog posts  
+- Add comments on blogs (shows commenter’s name)  
+- Role-based access (Admins can manage all blogs)  
+- Frontend and backend validation  
+- JWT-based authentication  
+- Passwords stored securely using bcrypt  
+- Fully responsive and clean UI
 
 ---
 
-## **Project Structure**
+## Tech Used
 
+**Frontend:** React.js, TailwindCSS, Axios  
+**Backend:** Node.js, Express.js  
+**Database:** MongoDB with Mongoose  
+**Auth:** JWT (JSON Web Token)  
+**Validation:** Express Validator, React Hook Form
+
+---
+
+## Installation and Setup
+---
+### 1. Clone this project
+```bash
+git clone https://github.com/abhishek8953/machineCoading.git
+cd primetrade-blog
+
+---
+
+### Backed
+
+cd backend
+npm install
+npm run dev
+
+### Frontend
+
+-cd frontend
+ npm install
+ npm run dev
